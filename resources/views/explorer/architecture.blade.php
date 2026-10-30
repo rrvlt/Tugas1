@@ -1,0 +1,5 @@
+@extends('layouts.app')
+@section('title', 'Architecture Dashboard')
+@section('content')
+<p class="eyebrow">LARAVEL 12 / EXPLORER</p><h1>Architecture Dashboard</h1><p class="lead">Peta struktur proyek dan peran setiap bagian di CampusInfo.</p><div class="metrics"><div><strong>6</strong><span>Named routes</span></div><div><strong>2</strong><span>Controller</span></div><div><strong>6</strong><span>Halaman Blade</span></div><div><strong>0</strong><span>Database wajib</span></div></div><div class="table-wrap"><table><caption>Folder dan file utama Laravel</caption><thead><tr><th>Folder atau file</th><th>Fungsi</th><th>Contoh pada proyek</th></tr></thead><tbody>@foreach($folders as [$path, $function, $example])<tr><td><code>{{ $path }}</code></td><td>{{ $function }}</td><td><code>{{ $example }}</code></td></tr>@endforeach</tbody></table></div><section class="feature"><div><h2>Bagaimana sebuah request diproses?</h2><p>Ikuti contoh GET /program-studi.</p></div><a class="button" href="{{ route('explorer.lifecycle') }}">Lihat lifecycle</a></section>
+@endsection
