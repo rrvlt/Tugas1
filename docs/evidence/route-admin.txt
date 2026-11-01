@@ -1,0 +1,23 @@
+Recorded: 2026-11-01T10:57:09+07:00
+Command: php artisan route:list --path=admin
+Exit code: 0
+
+
+  GET|HEAD        admin ............................................ admin.dashboard › Admin\DashboardController@index
+  GET|HEAD        admin/mahasiswa ............................ admin.mahasiswa.index › Admin\MahasiswaController@index
+  POST            admin/mahasiswa ............................ admin.mahasiswa.store › Admin\MahasiswaController@store
+  GET|HEAD        admin/mahasiswa/create ................... admin.mahasiswa.create › Admin\MahasiswaController@create
+  GET|HEAD        admin/mahasiswa/{mahasiswa} .................. admin.mahasiswa.show › Admin\MahasiswaController@show
+  PUT|PATCH       admin/mahasiswa/{mahasiswa} .............. admin.mahasiswa.update › Admin\MahasiswaController@update
+  DELETE          admin/mahasiswa/{mahasiswa} ............ admin.mahasiswa.destroy › Admin\MahasiswaController@destroy
+  GET|HEAD        admin/mahasiswa/{mahasiswa}/edit ............. admin.mahasiswa.edit › Admin\MahasiswaController@edit
+  GET|HEAD        admin/mata-kuliah ....................... admin.mata-kuliah.index › Admin\MataKuliahController@index
+  POST            admin/mata-kuliah ....................... admin.mata-kuliah.store › Admin\MataKuliahController@store
+  GET|HEAD        admin/mata-kuliah/create .............. admin.mata-kuliah.create › Admin\MataKuliahController@create
+  GET|HEAD        admin/mata-kuliah/{mataKuliah} ............ admin.mata-kuliah.show › Admin\MataKuliahController@show
+  PUT|PATCH       admin/mata-kuliah/{mataKuliah} ........ admin.mata-kuliah.update › Admin\MataKuliahController@update
+  DELETE          admin/mata-kuliah/{mataKuliah} ...... admin.mata-kuliah.destroy › Admin\MataKuliahController@destroy
+  GET|HEAD        admin/mata-kuliah/{mataKuliah}/edit ....... admin.mata-kuliah.edit › Admin\MataKuliahController@edit
+
+                                                                                                   Showing [15] routes
+

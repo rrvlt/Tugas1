@@ -1,0 +1,30 @@
+Recorded: 2026-11-01T10:57:08+07:00
+Command: php artisan route:list --except-vendor
+Exit code: 0
+
+
+  ANY             / .......................................................... Illuminate\Routing › RedirectController
+  GET|HEAD        admin ............................................ admin.dashboard › Admin\DashboardController@index
+  GET|HEAD        admin/mahasiswa ............................ admin.mahasiswa.index › Admin\MahasiswaController@index
+  POST            admin/mahasiswa ............................ admin.mahasiswa.store › Admin\MahasiswaController@store
+  GET|HEAD        admin/mahasiswa/create ................... admin.mahasiswa.create › Admin\MahasiswaController@create
+  GET|HEAD        admin/mahasiswa/{mahasiswa} .................. admin.mahasiswa.show › Admin\MahasiswaController@show
+  PUT|PATCH       admin/mahasiswa/{mahasiswa} .............. admin.mahasiswa.update › Admin\MahasiswaController@update
+  DELETE          admin/mahasiswa/{mahasiswa} ............ admin.mahasiswa.destroy › Admin\MahasiswaController@destroy
+  GET|HEAD        admin/mahasiswa/{mahasiswa}/edit ............. admin.mahasiswa.edit › Admin\MahasiswaController@edit
+  GET|HEAD        admin/mata-kuliah ....................... admin.mata-kuliah.index › Admin\MataKuliahController@index
+  POST            admin/mata-kuliah ....................... admin.mata-kuliah.store › Admin\MataKuliahController@store
+  GET|HEAD        admin/mata-kuliah/create .............. admin.mata-kuliah.create › Admin\MataKuliahController@create
+  GET|HEAD        admin/mata-kuliah/{mataKuliah} ............ admin.mata-kuliah.show › Admin\MataKuliahController@show
+  PUT|PATCH       admin/mata-kuliah/{mataKuliah} ........ admin.mata-kuliah.update › Admin\MataKuliahController@update
+  DELETE          admin/mata-kuliah/{mataKuliah} ...... admin.mata-kuliah.destroy › Admin\MataKuliahController@destroy
+  GET|HEAD        admin/mata-kuliah/{mataKuliah}/edit ....... admin.mata-kuliah.edit › Admin\MataKuliahController@edit
+  GET|HEAD        architecture ............................... explorer.architecture › ExplorerController@architecture
+  GET|HEAD        campus ......................................................... campus.home › CampusController@home
+  GET|HEAD        environment .................................. explorer.environment › ExplorerController@environment
+  GET|HEAD        kontak ................................................... campus.contact › CampusController@contact
+  GET|HEAD        program-studi .......................................... campus.programs › CampusController@programs
+  GET|HEAD        request-lifecycle ................................ explorer.lifecycle › ExplorerController@lifecycle
+
+                                                                                                   Showing [22] routes
+

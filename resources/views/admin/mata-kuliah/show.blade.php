@@ -1,0 +1,5 @@
+@extends('layouts.admin')
+@section('title', 'Detail Mata Kuliah')
+@section('content')
+<div class="page-head"><div><p class="eyebrow">DETAIL MASTER DATA</p><h1>{{ $item->nama }}</h1></div><a class="btn secondary" href="{{ route('admin.mata-kuliah.index') }}">Kembali</a></div><section class="card"><dl class="details"><div><dt>Kode mata kuliah</dt><dd>{{ $item->kode ?? '—' }}</dd></div><div><dt>Nama mata kuliah</dt><dd>{{ $item->nama ?? '—' }}</dd></div><div><dt>SKS</dt><dd>{{ $item->sks ?? '—' }}</dd></div><div><dt>Semester</dt><dd>{{ $item->semester ?? '—' }}</dd></div><div><dt>Deskripsi</dt><dd>{{ $item->deskripsi ?? '—' }}</dd></div></dl><div class="actions"><a class="btn" href="{{ route('admin.mata-kuliah.edit', $item) }}">Edit data</a><form method="POST" action="{{ route('admin.mata-kuliah.destroy', $item) }}" onsubmit="return confirm('Hapus data ini? Data yang dihapus tidak dapat dikembalikan.')">@csrf @method('DELETE')<button class="btn danger" type="submit">Hapus</button></form></div></section>
+@endsection

@@ -1,0 +1,8 @@
+@extends('layouts.admin')
+@section('title', 'Dashboard')
+@section('content')
+<div class="page-head"><div><p class="eyebrow">OVERVIEW</p><h1>Ruang kerja akademik</h1><p class="muted">Kelola mahasiswa dan mata kuliah dalam satu tempat.</p></div><span class="pill">{{ now()->format('d M Y') }}</span></div>
+<div class="stats"><a class="card stat" href="{{ route('admin.mahasiswa.index') }}"><span>Mahasiswa</span><strong>{{ $mahasiswaCount }}</strong><small>Lihat data mahasiswa →</small></a><a class="card stat" href="{{ route('admin.mata-kuliah.index') }}"><span>Mata kuliah</span><strong>{{ $mataKuliahCount }}</strong><small>Lihat katalog mata kuliah →</small></a><div class="card stat"><span>Total SKS katalog</span><strong>{{ $sksTotal }}</strong><small>Akumulasi SKS seluruh mata kuliah</small></div></div>
+<section class="hero"><div><p class="eyebrow">MULAI DARI DATA YANG RAPI</p><h2>Administrasi lebih sederhana.</h2><p>Tambahkan data, periksa detail, dan perbarui informasi akademik.</p><div class="actions"><a class="btn" href="{{ route('admin.mahasiswa.create') }}">+ Tambah mahasiswa</a><a class="btn secondary" href="{{ route('admin.mata-kuliah.create') }}">+ Tambah mata kuliah</a></div></div><div class="hero-mark" aria-hidden="true">V</div></section>
+<section class="card"><h2>Modul master data</h2><p class="muted">Mahasiswa menyimpan NIM, nama, email, program studi, dan angkatan. Mata kuliah menyimpan kode, nama, SKS, semester, dan deskripsi.</p><p>Gunakan pencarian untuk menemukan data, lalu buka Detail atau Edit. Penghapusan selalu meminta konfirmasi.</p></section>
+@endsection
