@@ -1,0 +1,2 @@
+PASS: existing student preserved; new status defaults to aktif.
+Isolated SQLite regression check, never executed against user data.

@@ -15,4 +15,9 @@
 <div class="field"><label for="angkatan">Angkatan *</label>
 <input id="angkatan" name="angkatan" type="number" value="{{ old('angkatan', $item->angkatan) }}" required min="2000" max="{{ date('Y') + 1 }}">
 @error('angkatan')<p class="error">{{ $message }}</p>@enderror</div>
+<div class="field"><label for="status">Status *</label><select id="status" name="status" required>
+@foreach(['aktif'=>'Aktif','cuti'=>'Cuti','nonaktif'=>'Nonaktif'] as $value=>$label)
+<option value="{{ $value }}" @selected(old('status', $item->status ?? 'aktif') === $value)>{{ $label }}</option>
+@endforeach
+</select>@error('status')<p class="error">{{ $message }}</p>@enderror</div>
 </div><div class="actions"><button class="btn" type="submit">Simpan data</button><a class="btn secondary" href="{{ route('admin.mahasiswa.index') }}">Batal</a></div>

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.explorer')
 @section('title', 'Beranda')
 @section('content')
 <section class="hero"><div><p class="eyebrow">PORTAL INFORMASI KAMPUS</p><h1>{{ $campus['tagline'] }}</h1><p class="lead">{{ $campus['description'] }}</p><div class="actions"><a class="button" href="{{ route('campus.programs') }}">Jelajahi program studi <span aria-hidden="true">↗</span></a><a class="text-link" href="{{ route('campus.contact') }}">Hubungi kampus</a></div></div><aside class="hero-card"><span class="pill">CAMPUS PROFILE</span><div class="campus-mark" aria-hidden="true">KN</div><h2>{{ $campus['name'] }}</h2><p>Belajar teknologi.<br>Membangun masa depan.</p><small>Profil dan program merupakan data contoh.</small></aside></section>

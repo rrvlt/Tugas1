@@ -1,0 +1,1 @@
+<header class="topbar"><div><span class="muted">VoltAcademic / </span><strong>@yield('title', 'Dashboard')</strong></div><div class="user-info"><span class="avatar" aria-hidden="true">A</span><div><strong>{{ config('academic.administrator') }}</strong><small>Pengelola akademik</small></div></div></header>

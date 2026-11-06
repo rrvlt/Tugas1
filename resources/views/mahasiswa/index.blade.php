@@ -1,0 +1,15 @@
+@extends('layouts.app')
+@section('title', 'Data Mahasiswa')
+@section('content')
+<div class="page-head"><div><p class="eyebrow">MASTER DATA</p><h1>Data Mahasiswa</h1><p class="muted">{{ $items->total() }} data{{ $q !== '' || $status !== '' ? ' sesuai filter' : ' terdaftar' }}</p></div><x-button :href="route('admin.mahasiswa.create')">+ Tambah mahasiswa</x-button></div>
+<x-panel><x-slot:header><h2>Daftar mahasiswa</h2></x-slot:header>
+<form class="search" method="GET" action="{{ route('admin.mahasiswa.index') }}"><label for="q">Cari NIM atau nama</label><input id="q" name="q" value="{{ $q }}" maxlength="100" placeholder="Ketik pencarian..."><label for="status-filter">Status</label><select id="status-filter" name="status"><option value="">Semua status</option>@foreach(['aktif'=>'Aktif','cuti'=>'Cuti','nonaktif'=>'Nonaktif'] as $value=>$label)<option value="{{ $value }}" @selected($status === $value)>{{ $label }}</option>@endforeach</select><x-button type="submit">Cari</x-button><a href="{{ route('admin.mahasiswa.index') }}">Reset</a></form>
+<div class="table-wrap"><table><thead><tr><th>No.</th><th>Nama / email</th><th>NIM</th><th>Program studi</th><th>Angkatan</th><th>Status</th><th>Aksi</th></tr></thead><tbody>
+@forelse($items as $item)
+<tr><td>{{ ($items->firstItem() - 1) + $loop->iteration }}</td><td><strong>{{ $item->nama }}</strong><small class="table-sub">{{ $item->email }}</small></td><td>{{ $item->nim }}</td><td>{{ $item->program_studi }}</td><td>{{ $item->angkatan }}</td><td><x-badge :status="$item->status" /></td><td><div class="actions"><a href="{{ route('admin.mahasiswa.show', $item) }}">Detail</a><a href="{{ route('admin.mahasiswa.edit', $item) }}">Edit</a><form method="POST" action="{{ route('admin.mahasiswa.destroy', $item) }}" onsubmit="return confirm('Hapus data ini? Data yang dihapus tidak dapat dikembalikan.')">@csrf @method('DELETE')<button class="btn danger" type="submit">Hapus</button></form></div></td></tr>
+@empty
+<tr><td colspan="7"><x-empty-state :title="$q !== '' || $status !== '' ? 'Tidak ada hasil yang sesuai' : 'Belum ada data mahasiswa'" :description="$q !== '' || $status !== '' ? 'Ubah kata pencarian atau pilih status lain.' : 'Tambahkan mahasiswa pertama melalui tombol Tambah mahasiswa.'" /></td></tr>
+@endforelse
+</tbody></table></div><div class="pagination"><span>Halaman {{ $items->currentPage() }} dari {{ $items->lastPage() }}</span>@if($items->previousPageUrl())<a href="{{ $items->previousPageUrl() }}">← Sebelumnya</a>@endif @if($items->nextPageUrl())<a href="{{ $items->nextPageUrl() }}">Berikutnya →</a>@endif</div>
+</x-panel>
+@endsection

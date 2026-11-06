@@ -1,59 +1,68 @@
-# VoltAcademic · Mini Project Academic
+# VoltAcademic · Dashboard Mahasiswa
 
-Laravel 12 · PPWL Tugas 2. Pengembangan CampusInfo dengan master data Mahasiswa dan Mata Kuliah.
+Laravel 12, Blade, Tailwind CSS 4 dan Vite. Melanjutkan CRUD Mahasiswa/Mata Kuliah dengan statistik status, komponen UI dan laporan mahasiswa.
 
-## Menjalankan setelah clone
+## Menjalankan setelah clone baru
 
-Persyaratan: PHP >=8.2, Composer dan extension pdo_sqlite, mbstring, openssl, fileinfo, curl, dom, xml. Tidak perlu Node/npm. Jalankan melalui PowerShell:
+PHP >=8.2 + Composer, Node.js >=22.12 + npm. Dari PowerShell:
 
 ```powershell
-git clone --branch tugas-2 https://github.com/rrvlt/Tugas1.git
+git clone --branch tugas-4 https://github.com/rrvlt/Tugas1.git
 cd Tugas1
 composer install
 Copy-Item .env.example .env
 New-Item database/database.sqlite -ItemType File
 php artisan key:generate
 php artisan migrate
+npm ci
+npm run build
 php verify.php
 php artisan serve
 ```
 
-Perintah menyalin `.env`, membuat database, dan `key:generate` hanya untuk clone baru. Jangan menimpa konfigurasi/database proyek existing. Jika SQLite sudah ada, lewati New-Item. Buka http://127.0.0.1:8000/admin.
+Perintah Copy-Item, New-Item dan key:generate hanya untuk clone baru; jangan menimpa .env/database atau mengganti APP_KEY aplikasi existing. Repository/branch harus sudah di-push sebelum perintah clone bisa digunakan.
 
-## Data contoh opsional
+Untuk mode pengembangan sesuai tugas, buka terminal kedua di folder aplikasi dan jalankan `npm run dev`. Buka http://127.0.0.1:8000/admin. Laravel dan Vite harus tetap berjalan. Alternatif hasil build cukup menjalankan Laravel setelah npm run build.
 
-```powershell
-php artisan db:seed --class=AcademicSeeder
-```
+## Data dan nama pengguna
 
-Tidak perlu menjalankan DatabaseSeeder bawaan. Data demo menggunakan identitas fiktif.
+Atur `ACADEMIC_ADMIN_NAME="Yoga"` di .env lalu jalankan `php artisan config:clear`. Nama ini untuk tampilan, belum ada login.
 
-## Verifikasi dan dokumentasi
+Opsional: `php artisan db:seed --class=DashboardDemoSeeder` menambahkan enam mahasiswa fiktif dengan status aktif/cuti/nonaktif. Tidak mengganti record existing. Mahasiswa sebelum tugas 4 mendapat status default aktif saat migration; perbarui sesuai kondisi.
 
-Jalankan `php verify.php` di terminal kedua. Hasil aktual route:list dan test tersimpan dalam `docs/evidence/`. Tes menggunakan database SQLite in-memory, terpisah dari data aplikasi.
+## Halaman
 
-- [Pemetaan route dan ketentuan](docs/ROUTES.md)
-- [Skenario pengujian dan screenshot](docs/PENGUJIAN.md)
+| URL | Fungsi |
+|---|---|
+|/admin|Sapaan, 4 statistik, 5 mahasiswa terbaru, panel dan empty state|
+|/admin/mahasiswa|CRUD, pencarian, filter status dan pagination|
+|/admin/mata-kuliah|CRUD mata kuliah|
+|/admin/laporan|Rekap status dan program studi|
+|/admin/komponen|Variasi alert/badge/button dan contoh kondisi Blade|
+|/campus|Halaman Campus Explorer tugas awal|
 
-Setelah semua verifikasi lulus:
+## Bukti tugas
+
+- [Pemetaan 21 langkah dan checklist screenshot](docs/TUGAS4.md)
+- [Route master data](docs/ROUTES.md)
+- [Pengujian CRUD](docs/PENGUJIAN.md)
+
+`php verify.php` menyimpan route:list, kompilasi Blade dan hasil tes aktual ke docs/evidence. Tes memakai SQLite :memory: terpisah. Bukti dari lingkungan pembuatan paket berada di docs/validation-build; verifikasi ulang di laptop sebelum mengumpulkan. Jalankan `npm run build` untuk memeriksa aset.
+
+## Push
+
+Di folder ini, pastikan branch tugas-4 lalu:
 
 ```powershell
 git status
-git branch --show-current
 git add .
 git diff --cached --stat
-git commit -m "Tugas 2: VoltAcademic master data akademik"
-git push -u origin tugas-2
+git commit -m "Tugas 4: dashboard mahasiswa Blade components dan Vite"
+git push -u origin tugas-4
 ```
 
-Pastikan branch aktif tugas-2. Jangan commit .env, vendor, database SQLite atau backup. Link pengumpulan setelah push: https://github.com/rrvlt/Tugas1/tree/tugas-2.
+Jangan commit .env, database, backup, vendor, node_modules atau public/hot. Commit kedua lockfile dependency. Link pengumpulan sesudah push: https://github.com/rrvlt/Tugas1/tree/tugas-4.
 
-## Cakupan aplikasi
+## Batasan
 
-CRUD dengan Eloquent dan migration, Route::resource + model binding, named route di `/admin`, validasi create/update, index/create/show/edit, flash message, konfirmasi delete, pencarian, pagination, dashboard, serta halaman tugas 1 di `/campus` dan URL Explorer lama.
-
-Versi ini adalah fondasi aplikasi lokal, **belum memiliki login dan otorisasi admin**. Prefix `/admin` bukan kontrol akses. Sebelum memakai data mahasiswa nyata di server publik, tambahkan autentikasi, policy/role, audit trail dan proses backup. Database constraint unik tersedia, sedangkan race-condition insert unik bersamaan belum diberi pesan custom.
-
-## Status pengujian paket
-
-Source dan konsistensi struktur diperiksa statis. PHP/Composer tidak tersedia pada lingkungan pembuatan, sehingga tes Laravel, render Blade, dan route:list **belum dieksekusi di sana**. Tidak ada hasil PASS atau screenshot runtime buatan. Hasil aktual akan dibuat oleh `php verify.php` di laptop kamu. Jangan mengumpulkan sebelum semua tes dan skenario manual lulus.
+Workspace lokal tanpa autentikasi/otorisasi admin. Nama administrator bukan login. Installer Windows perlu diverifikasi di laptop; tes paket dilakukan pada Linux/PHP 8.3/SQLite. Penggunaan database selain SQLite belum diuji.

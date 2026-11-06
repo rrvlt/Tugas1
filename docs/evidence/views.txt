@@ -1,0 +1,8 @@
+Recorded: 2026-11-01T17:12:35+07:00
+Command: php artisan view:cache
+Exit code: 0
+
+
+
+   INFO  Blade templates cached successfully.
+

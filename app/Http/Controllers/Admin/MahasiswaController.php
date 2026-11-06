@@ -10,14 +10,15 @@ class MahasiswaController extends Controller
 {
     public function index(Request $request): View
     {
-        $request->validate(['q' => ['nullable','string','max:100']]);
+        $request->validate(['q' => ['nullable','string','max:100'], 'status'=>['nullable','in:aktif,cuti,nonaktif']]);
         $q = trim((string) $request->input('q', ''));
-        $items = Mahasiswa::query()->when($q !== '', function ($query) use ($q) {
+        $status = (string) $request->input('status', '');
+        $items = Mahasiswa::query()->when($status !== '', fn($query) => $query->where('status', $status))->when($q !== '', function ($query) use ($q) {
             $query->where(function ($query) use ($q) {
                 $query->where('nim', 'like', '%'.$q.'%')->orWhere('nama', 'like', '%'.$q.'%');
             });
         })->orderByDesc('id')->paginate(10)->withQueryString();
-        return view('admin.mahasiswa.index', compact('items','q'));
+        return view('mahasiswa.index', compact('items','q','status'));
     }
     public function create(): View { return view('admin.mahasiswa.create', ['item' => new Mahasiswa]); }
     public function store(MahasiswaRequest $request): RedirectResponse

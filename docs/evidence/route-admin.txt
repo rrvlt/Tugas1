@@ -1,9 +1,11 @@
-Recorded: 2026-11-01T10:57:09+07:00
+Recorded: 2026-11-01T17:12:35+07:00
 Command: php artisan route:list --path=admin
 Exit code: 0
 
 
   GET|HEAD        admin ............................................ admin.dashboard › Admin\DashboardController@index
+  GET|HEAD        admin/komponen ............................. admin.components › Admin\DashboardController@components
+  GET|HEAD        admin/laporan .................................... admin.laporan › Admin\DashboardController@laporan
   GET|HEAD        admin/mahasiswa ............................ admin.mahasiswa.index › Admin\MahasiswaController@index
   POST            admin/mahasiswa ............................ admin.mahasiswa.store › Admin\MahasiswaController@store
   GET|HEAD        admin/mahasiswa/create ................... admin.mahasiswa.create › Admin\MahasiswaController@create
@@ -19,5 +21,5 @@ Exit code: 0
   DELETE          admin/mata-kuliah/{mataKuliah} ...... admin.mata-kuliah.destroy › Admin\MataKuliahController@destroy
   GET|HEAD        admin/mata-kuliah/{mataKuliah}/edit ....... admin.mata-kuliah.edit › Admin\MataKuliahController@edit
 
-                                                                                                   Showing [15] routes
+                                                                                                   Showing [17] routes
 

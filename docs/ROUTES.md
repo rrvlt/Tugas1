@@ -7,6 +7,8 @@ Tabel berikut adalah **pemetaan yang diharapkan dari source**, bukan salinan out
 | Method | URI | Named route | Controller action |
 |---|---|---|---|
 |GET|/admin|admin.dashboard|DashboardController@index|
+|GET|/admin/laporan|admin.laporan|DashboardController@laporan|
+|GET|/admin/komponen|admin.components|DashboardController@components|
 |GET|/admin/mahasiswa|admin.mahasiswa.index|MahasiswaController@index|
 |GET|/admin/mahasiswa/create|admin.mahasiswa.create|MahasiswaController@create|
 |POST|/admin/mahasiswa|admin.mahasiswa.store|MahasiswaController@store|
@@ -22,7 +24,7 @@ Tabel berikut adalah **pemetaan yang diharapkan dari source**, bukan salinan out
 |PUT/PATCH|/admin/mata-kuliah/{mataKuliah}|admin.mata-kuliah.update|MataKuliahController@update|
 |DELETE|/admin/mata-kuliah/{mataKuliah}|admin.mata-kuliah.destroy|MataKuliahController@destroy|
 
-GET route juga menerima HEAD. Total route admin yang diharapkan: 15. Root `/` mengarah ke `/admin`. Beranda tugas 1 menjadi `/campus` dengan named route `campus.home`; URL lain tetap.
+GET route juga menerima HEAD. Total route admin yang diharapkan: 17. Root `/` mengarah ke `/admin`. Beranda tugas 1 menjadi `/campus` dengan named route `campus.home`; URL lain tetap.
 
 Blade memakai `route('admin.mahasiswa.store')`, `route('admin.mahasiswa.update', $item)`, dan padanannya untuk Mata Kuliah. Semua form mutasi memakai `@csrf`; update memakai `@method('PUT')`, delete memakai `@method('DELETE')`.
 

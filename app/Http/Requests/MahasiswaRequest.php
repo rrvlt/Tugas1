@@ -9,7 +9,7 @@ class MahasiswaRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $values = [];
-        foreach (['nim', 'nama', 'email', 'program_studi', 'angkatan'] as $field) {
+        foreach (['nim', 'nama', 'email', 'program_studi', 'angkatan', 'status'] as $field) {
             if (is_string($this->input($field))) $values[$field] = trim($this->input($field));
         }
         if (isset($values['email'])) $values['email'] = strtolower($values['email']);
@@ -17,6 +17,7 @@ class MahasiswaRequest extends FormRequest
         $this->merge($values);
     }
     public function rules(): array { return [
+            'status' => ['required', Rule::in(['aktif', 'cuti', 'nonaktif'])],
             'nim' => ['required','string','max:20','regex:/^[A-Za-z0-9.-]+$/',Rule::unique('mahasiswas','nim')->ignore($this->route('mahasiswa'))],
             'nama' => ['required','string','max:100'],
             'email' => ['required','email','max:150',Rule::unique('mahasiswas','email')->ignore($this->route('mahasiswa'))],
@@ -24,6 +25,7 @@ class MahasiswaRequest extends FormRequest
             'angkatan' => ['required','integer','between:2000,'.(date('Y') + 1)]
     ]; }
     public function messages(): array { return [
+        'in' => 'Status harus Aktif, Cuti, atau Nonaktif.',
         'required' => ':attribute wajib diisi.', 'unique' => ':attribute sudah digunakan.',
         'email' => 'Format email tidak valid.', 'integer' => ':attribute harus bilangan bulat.',
         'between' => ':attribute harus antara :min dan :max.',

@@ -5,7 +5,8 @@ if (!is_dir('docs/evidence')) mkdir('docs/evidence', 0775, true);
 $commands = [
     'route-list.txt' => 'artisan route:list --except-vendor',
     'route-admin.txt' => 'artisan route:list --path=admin',
-    'tests.txt' => 'artisan test --compact',
+    'views.txt' => 'artisan view:cache',
+    'tests.txt' => 'artisan test --compact --fail-on-risky --fail-on-warning',
 ];
 $status = [];
 foreach ($commands as $file => $arguments) {

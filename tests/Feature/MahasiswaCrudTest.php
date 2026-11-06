@@ -6,7 +6,7 @@ use Tests\TestCase;
 class MahasiswaCrudTest extends TestCase
 {
     use RefreshDatabase;
-    private function data(): array { return ['nim'=>'422431053','nama'=>'Mahasiswa Contoh','email'=>'mahasiswa@example.test','program_studi'=>'Teknologi Informasi','angkatan'=>2026]; }
+    private function data(): array { return ['nim'=>'422431053','nama'=>'Mahasiswa Contoh','email'=>'mahasiswa@example.test','program_studi'=>'Teknologi Informasi','angkatan'=>2026,'status'=>'aktif']; }
     public function test_all_pages_and_full_crud(): void {
         $this->get(route('admin.dashboard'))->assertOk();
         $this->get(route('admin.mahasiswa.index'))->assertOk();

@@ -13,6 +13,8 @@ Route::get('/environment', [ExplorerController::class, 'environment'])->name('ex
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/laporan', [\App\Http\Controllers\Admin\DashboardController::class, 'laporan'])->name('laporan');
+    Route::get('/komponen', [\App\Http\Controllers\Admin\DashboardController::class, 'components'])->name('components');
     Route::resource('mahasiswa', \App\Http\Controllers\Admin\MahasiswaController::class)
         ->parameters(['mahasiswa' => 'mahasiswa']);
     Route::resource('mata-kuliah', \App\Http\Controllers\Admin\MataKuliahController::class)
