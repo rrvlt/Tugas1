@@ -1,10 +1,25 @@
-Recorded: 2026-11-01T17:12:34+07:00
+Recorded: 2026-11-08T19:34:52+07:00
 Command: php artisan route:list --except-vendor
 Exit code: 0
 
 
   ANY             / .......................................................... Illuminate\Routing › RedirectController
   GET|HEAD        admin ............................................ admin.dashboard › Admin\DashboardController@index
+  GET|HEAD        admin/dosen ........................................ admin.dosen.index › Admin\DosenController@index
+  POST            admin/dosen ........................................ admin.dosen.store › Admin\DosenController@store
+  GET|HEAD        admin/dosen/create ............................... admin.dosen.create › Admin\DosenController@create
+  GET|HEAD        admin/dosen/{dosen} .................................. admin.dosen.show › Admin\DosenController@show
+  PUT|PATCH       admin/dosen/{dosen} .............................. admin.dosen.update › Admin\DosenController@update
+  DELETE          admin/dosen/{dosen} ............................ admin.dosen.destroy › Admin\DosenController@destroy
+  GET|HEAD        admin/dosen/{dosen}/edit ............................. admin.dosen.edit › Admin\DosenController@edit
+  DELETE          admin/dosen/{dosen}/profil ........ admin.dosen.profil.destroy › Admin\DosenController@deleteProfile
+  GET|HEAD        admin/keahlian ............................... admin.keahlian.index › Admin\KeahlianController@index
+  POST            admin/keahlian ............................... admin.keahlian.store › Admin\KeahlianController@store
+  GET|HEAD        admin/keahlian/create ...................... admin.keahlian.create › Admin\KeahlianController@create
+  GET|HEAD        admin/keahlian/{keahlian} ...................... admin.keahlian.show › Admin\KeahlianController@show
+  PUT|PATCH       admin/keahlian/{keahlian} .................. admin.keahlian.update › Admin\KeahlianController@update
+  DELETE          admin/keahlian/{keahlian} ................ admin.keahlian.destroy › Admin\KeahlianController@destroy
+  GET|HEAD        admin/keahlian/{keahlian}/edit ................. admin.keahlian.edit › Admin\KeahlianController@edit
   GET|HEAD        admin/komponen ............................. admin.components › Admin\DashboardController@components
   GET|HEAD        admin/laporan .................................... admin.laporan › Admin\DashboardController@laporan
   GET|HEAD        admin/mahasiswa ............................ admin.mahasiswa.index › Admin\MahasiswaController@index
@@ -14,6 +29,9 @@ Exit code: 0
   PUT|PATCH       admin/mahasiswa/{mahasiswa} .............. admin.mahasiswa.update › Admin\MahasiswaController@update
   DELETE          admin/mahasiswa/{mahasiswa} ............ admin.mahasiswa.destroy › Admin\MahasiswaController@destroy
   GET|HEAD        admin/mahasiswa/{mahasiswa}/edit ............. admin.mahasiswa.edit › Admin\MahasiswaController@edit
+  POST            admin/mahasiswa/{mahasiswa}/krs ....... admin.mahasiswa.krs.store › Admin\MahasiswaController@attach
+  PATCH|DELETE    admin/mahasiswa/{mahasiswa}/krs/{mataKuliah} admin.mahasiswa.krs.pivot › Admin\MahasiswaController@…
+  DELETE          admin/mahasiswa/{mahasiswa}/profil admin.mahasiswa.profil.destroy › Admin\MahasiswaController@delet…
   GET|HEAD        admin/mata-kuliah ....................... admin.mata-kuliah.index › Admin\MataKuliahController@index
   POST            admin/mata-kuliah ....................... admin.mata-kuliah.store › Admin\MataKuliahController@store
   GET|HEAD        admin/mata-kuliah/create .............. admin.mata-kuliah.create › Admin\MataKuliahController@create
@@ -21,6 +39,13 @@ Exit code: 0
   PUT|PATCH       admin/mata-kuliah/{mataKuliah} ........ admin.mata-kuliah.update › Admin\MataKuliahController@update
   DELETE          admin/mata-kuliah/{mataKuliah} ...... admin.mata-kuliah.destroy › Admin\MataKuliahController@destroy
   GET|HEAD        admin/mata-kuliah/{mataKuliah}/edit ....... admin.mata-kuliah.edit › Admin\MataKuliahController@edit
+  GET|HEAD        admin/program-studi ................. admin.program-studi.index › Admin\ProgramStudiController@index
+  POST            admin/program-studi ................. admin.program-studi.store › Admin\ProgramStudiController@store
+  GET|HEAD        admin/program-studi/create ........ admin.program-studi.create › Admin\ProgramStudiController@create
+  GET|HEAD        admin/program-studi/{programStudi} .... admin.program-studi.show › Admin\ProgramStudiController@show
+  PUT|PATCH       admin/program-studi/{programStudi} admin.program-studi.update › Admin\ProgramStudiController@update
+  DELETE          admin/program-studi/{programStudi} admin.program-studi.destroy › Admin\ProgramStudiController@destr…
+  GET|HEAD        admin/program-studi/{programStudi}/edit admin.program-studi.edit › Admin\ProgramStudiController@edit
   GET|HEAD        architecture ............................... explorer.architecture › ExplorerController@architecture
   GET|HEAD        campus ......................................................... campus.home › CampusController@home
   GET|HEAD        environment .................................. explorer.environment › ExplorerController@environment
@@ -28,5 +53,5 @@ Exit code: 0
   GET|HEAD        program-studi .......................................... campus.programs › CampusController@programs
   GET|HEAD        request-lifecycle ................................ explorer.lifecycle › ExplorerController@lifecycle
 
-                                                                                                   Showing [24] routes
+                                                                                                   Showing [49] routes
 

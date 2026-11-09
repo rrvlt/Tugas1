@@ -9,7 +9,7 @@ class DashboardMahasiswaTest extends TestCase
     use RefreshDatabase;
     private function student(string $nim, string $status): Mahasiswa {
         return Mahasiswa::create(['nim'=>$nim,'nama'=>'Nama '.$nim,'email'=>strtolower($nim).'@example.test',
-            'program_studi'=>'Teknologi Informasi','angkatan'=>2026,'status'=>$status]);
+            'program_studi_id'=>\App\Models\ProgramStudi::firstOrCreate(['kode'=>'TEST-TI'],['nama'=>'Teknologi Informasi','aktif'=>true])->id,'angkatan'=>2026,'status'=>$status]);
     }
     public function test_empty_dashboard_and_empty_index(): void {
         $this->get(route('admin.dashboard'))->assertOk()->assertViewIs('dashboard')
@@ -33,7 +33,7 @@ class DashboardMahasiswaTest extends TestCase
     public function test_status_filter_update_and_invalid_status(): void {
         $a=$this->student('A','aktif'); $this->student('B','cuti');
         $this->get(route('admin.mahasiswa.index', ['status'=>'cuti']))->assertOk()->assertSee('Nama B')->assertDontSee('Nama A');
-        $data=$a->only(['nim','nama','email','program_studi','angkatan','status']);
+        $data=$a->only(['nim','nama','email','program_studi_id','angkatan','status']);
         $this->put(route('admin.mahasiswa.update',$a), array_replace($data,['status'=>'nonaktif']))->assertSessionHasNoErrors();
         $this->assertDatabaseHas('mahasiswas',['id'=>$a->id,'status'=>'nonaktif']);
         $this->get(route('admin.dashboard'))->assertViewHas('stats',['total'=>2,'aktif'=>0,'cuti'=>1,'nonaktif'=>1]);
@@ -50,6 +50,6 @@ class DashboardMahasiswaTest extends TestCase
     public function test_user_content_is_escaped_and_reports_are_accurate(): void {
         $student=$this->student('X','aktif');$student->update(['nama'=>'<script>alert(1)</script>']);
         $this->get(route('admin.dashboard'))->assertOk()->assertSee('&lt;script&gt;alert(1)&lt;/script&gt;',false)->assertDontSee('<script>alert(1)</script>',false);
-        $this->get(route('admin.laporan'))->assertOk()->assertViewHas('programs',fn($items)=>$items->count()===1 && (int)$items->first()->jumlah===1);
+        $this->get(route('admin.laporan'))->assertOk()->assertViewHas('programs',fn($items)=>$items->count()===1 && (int)$items->first()->mahasiswas_count===1);
     }
 }

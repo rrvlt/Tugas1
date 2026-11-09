@@ -34,7 +34,11 @@ class MataKuliahController extends Controller
     }
     public function destroy(MataKuliah $mataKuliah): RedirectResponse
     {
-        $mataKuliah->delete();
+        if ($mataKuliah->mahasiswas()->exists()) return back()->withErrors(['delete'=>'Mata kuliah masih dipakai KRS dan tidak dapat dihapus.']);
+        try { $mataKuliah->delete(); } catch (\Illuminate\Database\QueryException $e) {
+            if (str_starts_with((string)$e->getCode(),'23')) return back()->withErrors(['delete'=>'Mata kuliah masih direferensikan.']);
+            throw $e;
+        }
         return redirect()->route('admin.mata-kuliah.index')->with('success', 'Mata Kuliah berhasil dihapus.');
     }
 }

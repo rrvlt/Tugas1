@@ -1,0 +1,10 @@
+{
+    "recorded_at": "2026-11-06T12:36:39+00:00",
+    "php": "8.3.6",
+    "commands": {
+        "route-list.txt": 0,
+        "route-admin.txt": 0,
+        "views.txt": 0,
+        "tests.txt": 0
+    }
+}

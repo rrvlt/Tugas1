@@ -1,0 +1,9 @@
+
+   INFO  Running migrations.  
+
+  2026_11_06_000001_create_academic_relationships ............... 81.69ms DONE
+  2026_11_06_000002_create_dosen_relationships .................. 19.98ms DONE
+
+PASS: preserved 6 old students, normalized prodi names and foreign keys.
+PASS: SQLite foreign_key_check is empty.
+PASS: rollback restores prodi text and retains students in the isolated copy.

@@ -17,7 +17,7 @@
 <x-slot:actions><x-button variant="secondary" :href="route('admin.mahasiswa.index')" class="latest-action" data-testid="view-all">Lihat semua →</x-button></x-slot:actions>
 <div class="table-wrap"><table><thead><tr><th>No.</th><th>Nama</th><th>NIM</th><th>Program studi</th><th>Status</th></tr></thead><tbody>
 @forelse($mahasiswaTerbaru as $mahasiswa)
-<tr><td>{{ $loop->iteration }}</td><td><a href="{{ route('admin.mahasiswa.show', $mahasiswa) }}">{{ $mahasiswa->nama }}</a></td><td>{{ $mahasiswa->nim }}</td><td>{{ $mahasiswa->program_studi }}</td><td><x-badge :status="$mahasiswa->status" /></td></tr>
+<tr><td>{{ $loop->iteration }}</td><td><a href="{{ route('admin.mahasiswa.show', $mahasiswa) }}">{{ $mahasiswa->nama }}</a></td><td>{{ $mahasiswa->nim }}</td><td>{{ $mahasiswa->programStudi?->nama }}</td><td><x-badge :status="$mahasiswa->status" /></td></tr>
 @empty
 <tr><td colspan="5"><x-empty-state><x-button :href="route('admin.mahasiswa.create')">+ Tambah mahasiswa</x-button></x-empty-state></td></tr>
 @endforelse

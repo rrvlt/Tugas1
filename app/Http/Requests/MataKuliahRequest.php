@@ -17,6 +17,7 @@ class MataKuliahRequest extends FormRequest
         $this->merge($values);
     }
     public function rules(): array { return [
+            'aktif'=>['sometimes','boolean'],
             'kode' => ['required','string','max:20','regex:/^[A-Za-z0-9.-]+$/',Rule::unique('mata_kuliahs','kode')->ignore($this->route('mataKuliah'))],
             'nama' => ['required','string','max:150'],
             'sks' => ['required','integer','between:1,6'],

@@ -3,6 +3,9 @@
  ['route'=>'admin.dashboard','match'=>'admin.dashboard','label'=>'Dashboard','icon'=>'◈'],
  ['route'=>'admin.mahasiswa.index','match'=>'admin.mahasiswa.*','label'=>'Data Mahasiswa','icon'=>'◎'],
  ['route'=>'admin.mata-kuliah.index','match'=>'admin.mata-kuliah.*','label'=>'Mata Kuliah','icon'=>'▤'],
+ ['route'=>'admin.program-studi.index','match'=>'admin.program-studi.*','label'=>'Program Studi','icon'=>'▧'],
+ ['route'=>'admin.dosen.index','match'=>'admin.dosen.*','label'=>'Dosen','icon'=>'◇'],
+ ['route'=>'admin.keahlian.index','match'=>'admin.keahlian.*','label'=>'Keahlian','icon'=>'✧'],
  ['route'=>'admin.laporan','match'=>'admin.laporan','label'=>'Laporan','icon'=>'▥'],
  ['route'=>'admin.components','match'=>'admin.components','label'=>'Komponen UI','icon'=>'◇'],
 ] as $menu)

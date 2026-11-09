@@ -1,0 +1,10 @@
+Recorded: 2026-11-06T12:36:39+00:00
+Command: php artisan test --compact --fail-on-risky --fail-on-warning
+Exit code: 0
+
+
+  ..............................
+
+  Tests:    30 passed (282 assertions)
+  Duration: 1.07s
+

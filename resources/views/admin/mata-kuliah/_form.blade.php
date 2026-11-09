@@ -1,4 +1,6 @@
 @csrf
+<input type="hidden" name="aktif" value="0"><label class="actions"><input type="checkbox" name="aktif" value="1" @checked(old('aktif', $item->aktif ?? true))> Mata kuliah aktif</label>
+
 <div class="form-grid">
 <div class="field"><label for="kode">Kode mata kuliah *</label>
 <input id="kode" name="kode" type="text" value="{{ old('kode', $item->kode) }}" required maxlength="20">

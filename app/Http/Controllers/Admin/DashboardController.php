@@ -16,13 +16,13 @@ class DashboardController extends Controller
         return view('dashboard', [
             'administrator' => config('academic.administrator'),
             'stats' => $this->statistics(),
-            'mahasiswaTerbaru' => Mahasiswa::query()->latest('id')->limit(5)->get(),
+            'mahasiswaTerbaru' => Mahasiswa::with('programStudi')->latest('id')->limit(5)->get(),
         ]);
     }
     public function laporan(): View
     {
         return view('laporan.index', ['stats'=>$this->statistics(),
-            'programs'=>Mahasiswa::query()->selectRaw('program_studi, COUNT(*) AS jumlah')->groupBy('program_studi')->orderBy('program_studi')->get()]);
+            'programs'=>\App\Models\ProgramStudi::withCount('mahasiswas')->orderBy('nama')->get()]);
     }
     public function components(): View { return view('components-demo'); }
 }

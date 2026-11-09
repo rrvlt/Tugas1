@@ -6,7 +6,7 @@ use Tests\TestCase;
 class MahasiswaCrudTest extends TestCase
 {
     use RefreshDatabase;
-    private function data(): array { return ['nim'=>'422431053','nama'=>'Mahasiswa Contoh','email'=>'mahasiswa@example.test','program_studi'=>'Teknologi Informasi','angkatan'=>2026,'status'=>'aktif']; }
+    private function data(): array { return ['nim'=>'422431053','nama'=>'Mahasiswa Contoh','email'=>'mahasiswa@example.test','program_studi_id'=>\App\Models\ProgramStudi::firstOrCreate(['kode'=>'TEST-TI'],['nama'=>'Teknologi Informasi','aktif'=>true])->id,'angkatan'=>2026,'status'=>'aktif']; }
     public function test_all_pages_and_full_crud(): void {
         $this->get(route('admin.dashboard'))->assertOk();
         $this->get(route('admin.mahasiswa.index'))->assertOk();
@@ -24,7 +24,7 @@ class MahasiswaCrudTest extends TestCase
         $this->get(route('admin.mahasiswa.show', $item))->assertNotFound();
     }
     public function test_required_and_invalid_values_are_rejected(): void {
-        $this->post(route('admin.mahasiswa.store'), [])->assertSessionHasErrors(['nim', 'nama', 'email', 'program_studi', 'angkatan']);
+        $this->post(route('admin.mahasiswa.store'), [])->assertSessionHasErrors(['nim', 'nama', 'email', 'program_studi_id', 'angkatan']);
         $bad = ['email'=>'invalid','angkatan'=>1999,'nim'=>'with space'];
         $this->post(route('admin.mahasiswa.store'), array_replace($this->data(), $bad))->assertSessionHasErrors(array_keys($bad));
         $this->assertDatabaseCount('mahasiswas', 0);
